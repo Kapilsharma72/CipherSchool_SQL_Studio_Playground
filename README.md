@@ -34,7 +34,7 @@ Let's get you up and running with Cipher SQL Studio in just a few minutes!
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Kapilsharma72/SQL_Studio_Playground.git
+   git clone https://github.com/Kapilsharma72/CipherSchool_SQL_Studio_Playground.git
    cd cipher-sql-studio
    ```
 
