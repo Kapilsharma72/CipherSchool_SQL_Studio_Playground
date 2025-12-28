@@ -1,0 +1,343 @@
+@import 'variables';
+@import 'mixins';
+
+.assignment-attempt {
+  padding: $spacing-lg;
+  max-width: 1800px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(135deg, $color-bg 0%, #f3f4f6 100%);
+  
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-xl;
+  }
+
+  .error-message {
+    @include card;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, $color-danger-light, rgba($color-danger, 0.05));
+    border: 2px solid rgba($color-danger, 0.2);
+    border-radius: $border-radius-xl;
+
+    p {
+      color: $color-danger;
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin: 0 0 2rem 0;
+    }
+
+    button {
+      @include button-primary;
+      padding: 0.875rem 2.5rem;
+      font-size: 1rem;
+      border-radius: $border-radius-md;
+    }
+  }
+}
+
+.assignment-header {
+  margin-bottom: $spacing-xl;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+  padding-bottom: $spacing-lg;
+  border-bottom: 2px solid $color-border-light;
+  
+  h1 {
+    margin: 0;
+    color: $color-text;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, $color-text 0%, $color-text-secondary 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    @media (min-width: $breakpoint-md) {
+      font-size: 2.5rem;
+    }
+  }
+  
+  .assistant-button {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+    color: white;
+    border: none;
+    border-radius: $border-radius-full;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+    
+    &:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 20px rgba($color-primary, 0.4);
+      background: linear-gradient(135deg, $color-primary-light, $color-primary);
+    }
+    
+    &:active {
+      transform: translateY(0) scale(1);
+      box-shadow: 0 2px 8px rgba($color-primary, 0.3);
+    }
+    
+    .button-icon {
+      font-size: 1.2em;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+    
+    .button-text {
+      @media (max-width: $breakpoint-sm) {
+        display: none;
+      }
+    }
+  }
+}
+
+.assignment-layout {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.assignment-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+  min-height: 450px;
+  
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 1fr 1fr;
+    min-height: 550px;
+    gap: $spacing-xl;
+  }
+
+    &:first-child {
+    @media (min-width: $breakpoint-lg) {
+      .question-section,
+      .sample-data {
+        min-height: 550px;
+        max-height: 650px;
+      }
+    }
+  }
+
+    &:last-child {
+    @media (min-width: $breakpoint-lg) {
+      .sql-editor,
+      .results-section {
+        min-height: 550px;
+      }
+    }
+  }
+}
+
+.question-section {
+  @include card;
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+    color: $color-text;
+    font-size: 1.4rem;
+  }
+  
+  .question-content {
+    margin-bottom: $spacing-lg;
+    line-height: 1.6;
+  }
+  
+  .requirements {
+    h3 {
+      margin-top: $spacing-lg;
+      margin-bottom: $spacing-sm;
+      font-size: 1.1rem;
+      color: $color-text;
+    }
+    
+    ul {
+      padding-left: $spacing-md;
+      margin: 0;
+      
+      li {
+        margin-bottom: $spacing-xs;
+      }
+    }
+  }
+}
+
+.sample-data {
+  @include card;
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+    color: $color-text;
+    font-size: 1.4rem;
+  }
+  
+  .tables-container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+  
+  .data-table {
+    h3 {
+      margin-top: 0;
+      margin-bottom: $spacing-sm;
+      font-size: 1.1rem;
+      color: $color-text;
+    }
+    
+    .table-responsive {
+      @include table-container;
+      
+      table {
+        @include table;
+        min-width: 100%;
+        
+        th, td {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+.sql-editor {
+  @include card;
+  background-color: $color-bg-darker;
+  color: white;
+  
+  .editor-header {
+    @include flex-between;
+    margin-bottom: $spacing-md;
+    
+    h2 {
+      margin: 0;
+      color: white;
+      font-size: 1.4rem;
+    }
+  }
+  
+  .editor-actions {
+    display: flex;
+    gap: $spacing-sm;
+  }
+  
+  .execute-button {
+    @include button-primary;
+    background-color: $color-success;
+    
+    &:hover:not(:disabled) {
+      background-color: darken($color-success, 10%);
+    }
+  }
+  
+  .editor-container {
+    border-radius: $border-radius-sm;
+    overflow: hidden;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .editor-help {
+    font-size: 0.8rem;
+    color: rgba(white, 0.6);
+    text-align: right;
+  }
+  
+    :global(.monaco-editor) {
+    .margin {
+      background-color: $color-bg-darker !important;
+    }
+    
+    .monaco-editor-background {
+      background-color: $color-bg-darker !important;
+    }
+  }
+}
+
+.results-section {
+  @include card;
+  
+  &.loading, &.empty {
+    @include flex-center;
+    flex-direction: column;
+    min-height: 200px;
+    
+    .loading-spinner {
+      @include loading-spinner(40px, $color-primary);
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  &.error {
+    background-color: lighten-color($color-danger, 40);
+    border-left: 4px solid $color-danger;
+    
+    h2 {
+      color: $color-danger;
+    }
+    
+    .error-message {
+      color: darken-color($color-danger, 10);
+      background-color: rgba(white, 0.7);
+      padding: $spacing-md;
+      border-radius: $border-radius-sm;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+  }
+  
+  .results-header {
+    @include flex-between;
+    margin-bottom: $spacing-md;
+    
+    h2 {
+      margin: 0;
+      color: $color-text;
+      font-size: 1.4rem;
+    }
+    
+    .results-meta {
+      color: $color-text-light;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .table-responsive {
+    @include table-container;
+    
+    table {
+      @include table;
+      
+      th, td {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+$tablet-breakpoint: $breakpoint-md - 1px;
+
+@media (max-width: $tablet-breakpoint) {
+  .assignment-layout {
+    gap: $spacing-md;
+  }
+  
+  .assignment-row {
+    gap: $spacing-md;
+  }
+  
+  .sql-editor, .results-section {
+    margin-top: $spacing-md;
+  }
+}

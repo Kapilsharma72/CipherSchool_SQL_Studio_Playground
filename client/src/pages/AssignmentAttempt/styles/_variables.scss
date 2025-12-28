@@ -1,0 +1,39 @@
+$color-primary: #6366f1;
+$color-primary-dark: #4f46e5;
+$color-primary-light: #818cf8;
+$color-primary-lighter: #e0e7ff;
+$color-success: #10b981;
+$color-success-dark: #059669;
+$color-success-light: #d1fae5;
+$color-warning: #f59e0b;
+$color-danger: #ef4444;
+$color-danger-light: #fee2e2;
+$color-text: #111827;
+$color-text-secondary: #4b5563;
+$color-text-light: #6b7280;
+$color-text-muted: #9ca3af;
+$color-border: #e5e7eb;
+$color-border-light: #f3f4f6;
+$color-bg: #f9fafb;
+$color-bg-light: #ffffff;
+$color-bg-dark: #1f2937;
+$color-bg-darker: #111827;
+$color-white: #ffffff;
+$color-accent: #8b5cf6;
+
+$spacing-xs: 0.25rem;  $spacing-sm: 0.5rem;   $spacing-md: 1rem;     $spacing-lg: 1.5rem;   $spacing-xl: 2rem;     $spacing-xxl: 3rem;    
+$border-radius-sm: 6px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-full: 9999px;
+
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

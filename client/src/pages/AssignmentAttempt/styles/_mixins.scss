@@ -1,0 +1,200 @@
+@import 'variables';
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm - 1px) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (max-width: $breakpoint-md - 1px) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg - 1px) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  border-radius: $border-radius-sm;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba($color-primary, 0.3);
+  font-weight: 600;
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, $color-primary-dark, darken($color-primary-dark, 5%));
+    box-shadow: 0 6px 8px -1px rgba($color-primary, 0.4);
+    transform: translateY(-1px);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba($color-primary, 0.3);
+  }
+}
+
+@mixin card {
+  background: $color-white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  padding: $spacing-lg;
+  border: 1px solid $color-border-light;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-xl;
+  }
+}
+
+@mixin card-hover {
+  @include card;
+  
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: $spacing-md 0;
+  font-size: 0.9rem;
+  
+  th, td {
+    padding: $spacing-md $spacing-lg;
+    text-align: left;
+    border-bottom: 1px solid $color-border-light;
+  }
+  
+  th {
+    background-color: $color-bg-light;
+    font-weight: 600;
+    color: $color-text;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  tbody tr {
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: rgba($color-primary, 0.03);
+    }
+    
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+@mixin scrollbar($width: 8px) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $color-bg;
+    border-radius: $width / 2;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $color-border;
+    border-radius: $width / 2;
+    border: 2px solid $color-bg;
+    
+    &:hover {
+      background: $color-text-light;
+    }
+  }
+}
+
+@mixin table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: $spacing-md 0;
+  
+  @include scrollbar(6px);
+  
+  table {
+    min-width: 100%;
+  }
+}
+
+@mixin loading-spinner($size: 40px, $color: $color-primary) {
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  width: $size;
+  height: $size;
+  border: 3px solid rgba($color, 0.2);
+  border-radius: 50%;
+  border-top-color: $color;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto;
+}

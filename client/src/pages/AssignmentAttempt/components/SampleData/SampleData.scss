@@ -1,0 +1,206 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixins';
+
+.sample-data {
+  @include card;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: $color-white;
+
+  h2 {
+    margin: 0 0 1.5rem 0;
+    color: $color-text;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $color-border-light;
+    letter-spacing: -0.02em;
+  }
+
+  .tables-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 0.5rem;
+    @include scrollbar(8px);
+  }
+
+  .data-table {
+    h3 {
+      margin: 0 0 1rem 0;
+      color: $color-primary;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.75rem 1rem;
+      background: linear-gradient(135deg, rgba($color-primary, 0.08), rgba($color-primary, 0.04));
+      border-radius: $border-radius-md;
+      border-left: 3px solid $color-primary;
+
+      &::before {
+        content: '📊';
+        font-size: 1.2em;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+      }
+    }
+
+    .table-responsive {
+      @include table-container;
+      border: none;
+      border-radius: $border-radius-lg;
+      background: $color-white;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 0;
+        background: $color-white;
+
+        thead {
+          background: linear-gradient(135deg, #6366f1, #4f46e5);
+          position: sticky;
+          top: 0;
+          z-index: 10;
+          
+          th {
+            color: white;
+            font-weight: 600;
+            padding: 0.875rem 1.125rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            border: none;
+            background: transparent;
+            text-align: left;
+            white-space: nowrap;
+            
+            &:first-child {
+              border-top-left-radius: $border-radius-lg;
+            }
+            
+            &:last-child {
+              border-top-right-radius: $border-radius-lg;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            transition: background-color 0.15s ease;
+            border-bottom: 1px solid rgba($color-border-light, 0.8);
+
+            &:hover {
+              background-color: rgba($color-primary, 0.05);
+            }
+
+            &:nth-child(even) {
+              background-color: rgba($color-bg, 0.4);
+            }
+
+            &:last-child {
+              border-bottom: none;
+              
+              td {
+                &:first-child {
+                  border-bottom-left-radius: $border-radius-lg;
+                }
+                
+                &:last-child {
+                  border-bottom-right-radius: $border-radius-lg;
+                }
+              }
+            }
+          }
+
+          td {
+            padding: 0.875rem 1.125rem;
+            color: $color-text;
+            font-size: 0.875rem;
+            border: none;
+            word-break: break-word;
+            line-height: 1.6;
+            vertical-align: middle;
+
+            &:first-child {
+              font-weight: 600;
+              color: $color-primary;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            }
+          }
+        }
+      }
+    }
+
+    p {
+      color: $color-text-light;
+      font-style: italic;
+      text-align: center;
+      padding: 2.5rem;
+      margin: 0;
+      font-size: 1rem;
+
+      &.no-data {
+        background: linear-gradient(135deg, $color-bg, rgba($color-text-light, 0.05));
+        border-radius: $border-radius-lg;
+        padding: 2rem;
+        border: 1px dashed $color-border;
+      }
+    }
+  }
+
+  .no-data-message {
+    color: $color-text-light;
+    font-style: italic;
+    text-align: center;
+    padding: 4rem 2rem;
+    margin: 0;
+    background: linear-gradient(135deg, $color-bg, rgba($color-text-light, 0.05));
+    border-radius: $border-radius-lg;
+    border: 2px dashed $color-border;
+    font-size: 1.05rem;
+  }
+
+  .null-value {
+    color: $color-text-muted;
+    font-style: italic;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    background: rgba($color-text-muted, 0.1);
+    border-radius: $border-radius-sm;
+  }
+}
+
+@media (max-width: $breakpoint-md - 1px) {
+  .sample-data {
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    .data-table {
+      h3 {
+        font-size: 1.05rem;
+      }
+
+      .table-responsive {
+        table {
+          font-size: 0.85rem;
+
+          thead th,
+          tbody td {
+            padding: 0.75rem 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
