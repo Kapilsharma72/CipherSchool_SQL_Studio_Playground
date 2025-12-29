@@ -113,10 +113,14 @@ const validateQuery = (query) => {
   ];
   
     const blockedPatterns = [
-    /;.*(SELECT|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE|GRANT|REVOKE)/i,
-    /\/\*.*\*\    /--.*\n/,          /pg_/i,             /current_(user|database|schema)/i,
-    /session_user|current_setting|set_config/i,
-    /\$\$.*\$\$/s,    ];
+      /;.*(SELECT|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE|GRANT|REVOKE)/i,
+      /\/\*.*\*\//,  // Block multi-line comments
+      /--.*\n/,     // Block single-line SQL comments
+      /pg_/i,        // Block PostgreSQL system tables
+      /current_(user|database|schema)/i,  // Block current user/db functions
+      /session_user|current_setting|set_config/i,  // Block session-related functions
+      /\$\$.*\$\$/s  // Block dollar-quoted strings
+    ];
   
     const hasBlockedKeyword = blockedKeywords.some(keyword => 
     new RegExp(`\\b${keyword}\\b`, 'i').test(query)

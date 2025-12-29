@@ -21,7 +21,8 @@ const app = express();
 app.use(helmet());
 
 const corsOptions = {
-  origin: 'http:  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  origin: 'http://localhost:3000', // Update this with your frontend URL
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   credentials: true,
   optionsSuccessStatus: 200
 };
